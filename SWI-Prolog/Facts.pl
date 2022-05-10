@@ -1,4 +1,4 @@
-man(dmirty).
+man(dmitry).
 man(samuel).
 man(georgy).
 man(fred).
@@ -15,9 +15,13 @@ woman(maria).
 woman(sophie).
 woman(anastasia).
 woman(helen).
+woman(temp_sis).
 
 parent(dmitry,sophie).
 parent(alexandra,sophie).
+
+parent(max,julia).
+parent(anastasia,julia).
 
 parent(samuel,fred).
 parent(sara,fred).
