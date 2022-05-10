@@ -45,3 +45,6 @@ parent(jason,michail).
 parent(helen,michail).
 parent(jason,lary).
 parent(helen,lary).
+
+father(X,Y):-parent(X,Y),man(X).    % n_11
+father(X):-father(Y,X),write(Y).
