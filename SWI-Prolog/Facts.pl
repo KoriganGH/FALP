@@ -48,3 +48,6 @@ parent(helen,lary).
 
 father(X,Y):-parent(X,Y),man(X).    % n_11
 father(X):-father(Y,X),write(Y).
+
+sister(X,Y):-parent(Z,X),parent(Z,Y),parent(G,X),parent(G,Y),woman(X),woman(Z),man(G),X\=Y.     % n_12
+sisters(X):-sister(Y,X),write(Y),nl,fail.
