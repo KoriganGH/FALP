@@ -15,7 +15,7 @@ woman(maria).
 woman(sophie).
 woman(anastasia).
 woman(helen).
-woman(temp_sis).
+woman(julia).
 
 parent(dmitry,sophie).
 parent(alexandra,sophie).
