@@ -51,3 +51,8 @@ father(X):-father(Y,X),write(Y).
 
 sister(X,Y):-parent(Z,X),parent(Z,Y),parent(G,X),parent(G,Y),woman(X),woman(Z),man(G),X\=Y.     % n_12
 sisters(X):-sister(Y,X),write(Y),nl,fail.
+
+grand_so(X,Y):-parent(V,X),parent(Y,V),man(X).    % n_13
+grand_sons(X):-grand_so(Y,X),write(Y),nl,fail.
+
+grand_ma_and_son(X,Y):-woman(X),man(Y),parent(Z,Y),parent(X,Z);man(X),woman(Y),parent(Z,X),parent(Y,Z).  % n_14
