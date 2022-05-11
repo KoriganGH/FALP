@@ -60,3 +60,7 @@ grand_ma_and_son(X,Y):-woman(X),man(Y),parent(Z,Y),parent(X,Z);man(X),woman(Y),p
 mon_up(0,Y):-write(Y),!.                                           % n_15                
 mon_up(X,Y):- N is (X div 10),M is (Y*(X mod 10)), mon_up(N,M).       
 mon_up(X):-mon_up(X,1).
+
+mon_down(0,1):-!.                                                   % n_16
+mon_down(X,Y):-X1 is X div 10,mon_down(X1,Y1),Y is Y1*(X mod 10).     
+mon_down(X):-mon_down(X,Y),write(Y).
