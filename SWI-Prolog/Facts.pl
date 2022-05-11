@@ -56,3 +56,7 @@ grand_so(X,Y):-parent(V,X),parent(Y,V),man(X).    % n_13
 grand_sons(X):-grand_so(Y,X),write(Y),nl,fail.
 
 grand_ma_and_son(X,Y):-woman(X),man(Y),parent(Z,Y),parent(X,Z);man(X),woman(Y),parent(Z,X),parent(Y,Z).  % n_14
+
+mon_up(0,Y):-write(Y),!.                                           % n_15                
+mon_up(X,Y):- N is (X div 10),M is (Y*(X mod 10)), mon_up(N,M).       
+mon_up(X):-mon_up(X,1).
