@@ -68,4 +68,8 @@ mon_down(X):-mon_down(X,Y),write(Y).
 count_up(0,0):-!.                                                                                               % n_17
 count_up(X,Y):- X1 is (X div 10), Z is (X mod 10), count_up(X1,Y1) , (Z>3,Z mod 2 =\=0 -> Y is Y1+1;Y is Y1).
 count_up(X):-count_up(X,Y),write(Y).
+                                                                                                                                                                    
+fib_up(1,1):-!.                                                                  % n_19
+fib_up(2,1):-!.
+fib_up(X,Y):- X>1, X1 is X-1,X2 is X-2, fib_up(X1,Y1),fib_up(X2,Y2),Y is Y1+Y2. 
 
