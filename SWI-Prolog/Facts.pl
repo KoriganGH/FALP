@@ -64,3 +64,8 @@ mon_up(X):-mon_up(X,1).
 mon_down(0,1):-!.                                                   % n_16
 mon_down(X,Y):-X1 is X div 10,mon_down(X1,Y1),Y is Y1*(X mod 10).     
 mon_down(X):-mon_down(X,Y),write(Y).
+
+count_up(0,0):-!.                                                                                               % n_17
+count_up(X,Y):- X1 is (X div 10), Z is (X mod 10), count_up(X1,Y1) , (Z>3,Z mod 2 =\=0 -> Y is Y1+1;Y is Y1).
+count_up(X):-count_up(X,Y),write(Y).
+
