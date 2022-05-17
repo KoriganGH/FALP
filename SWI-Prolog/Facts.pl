@@ -73,3 +73,8 @@ fib_up(1,1):-!.                                                                 
 fib_up(2,1):-!.
 fib_up(X,Y):- X>1, X1 is X-1,X2 is X-2, fib_up(X1,Y1),fib_up(X2,Y2),Y is Y1+Y2. 
 
+fib_down(N,X):-fib_down(N,1,0,X).                                         % n_20
+fib_down(1,Result,_,Result):-!.
+fib_down(N,X1,X2,Result):-X is X1+X2, N1 is N-1,fib_down(N1,X,X1,Result).
+   
+
