@@ -4,7 +4,7 @@ let question m =
   match m with
    |"F#"->printf "Ты подлиза!"
    |"Prolog"->printf "Ты подлиза!"
-   |_->printf "Все понятно..."
+   |_->printf "Все понятно.."
    
 [<EntryPoint>]
 let main argv =
