@@ -28,7 +28,7 @@ let task list =
 
 [<EntryPoint>]
 let main argv =
-    let n = Convert.ToInt32(Console.ReadLine())
-    let list = input_list n
+    let m = Convert.ToInt32(Console.ReadLine())
+    let list = input_list m
     list |> task |> output_list |> ignore
     0
