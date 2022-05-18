@@ -69,7 +69,7 @@ count_up(0,0):-!.                                                               
 count_up(X,Y):- X1 is (X div 10), Z is (X mod 10), count_up(X1,Y1) , (Z>3,Z mod 2 =\=0 -> Y is Y1+1;Y is Y1).
 count_up(X):-count_up(X,Y),write(Y).
 
-count_down(X,Y):-count_down(X,Y,0).                                                                                                   % n_18
+count_down(X,Y):-count_down(X,Y,0).                                                                                                              % n_18
 count_down(0,Result,Result):-!.
 count_down(X,Count,CurCount):- X1 is X mod 10, (X1>3,1 is X1 mod 2, NowCount is CurCount+1;NowCount is CurCount), X2 is X div 10, count_down(X2,Count,NowCount). 
                                                                                                                                                                     
