@@ -46,3 +46,18 @@ sdvig(L,[E|RL]):-last(L,E,RL),!.
 sdvig_2(L,[E|RL]):-sdvig(L,R),sdvig(R,[E|RL]).
 
 n_15(N):-read_list(List,N),sdvig_2(List,List2),write_list(List2).
+
+%16(11)
+count_el(N,List,Count):-count_el(N,List,Count,0),!.
+count_el(_,[],Count,Count).
+count_el(N,[H|T],Count,TCount):-(N =:= H -> NewTCount is TCount+1,count_el(N,T,Count,NewTCount);count_el(N,T,Count,TCount)).
+
+count_list(List,List_counts):-count_list(List,List,List_counts,[]),!.
+count_list([],_,L,L):-!.
+count_list([H|T],List,List_counts,TList):-count_el(H,List,Count),append(TList,[Count],NewTList),count_list(T,List,List_counts,NewTList).
+
+solo(List,X):-count_list(List,List_counts),solo(X,List,List_counts),!.
+solo(X,[X|_],[1|_]):-!.
+solo(X,[H|T],[HC|TC]):-solo(X,T,TC).
+
+n_16(N):-read_list(List,N),solo(List,X),write(X).
