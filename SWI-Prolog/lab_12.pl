@@ -20,3 +20,7 @@ digit_sum(N,Sum,X):-NewN is N div 10,NewSum is (N mod 10)+Sum,digit_sum(NewN,New
 mult_del(N,M):-mult_del(N,2,1,M),!.
 mult_del(N,N,TM,TM):-!.
 mult_del(N,Y,TM,M):-N mod Y =:= 0,digit_sum(Y,X),digit_sum(N,U),X<U->NewY is Y+1,NewTM is TM*Y,mult_del(N,NewY,NewTM,M);NewY is Y+1,mult_del(N,NewY,TM,M).
+
+%14
+lenght_list([],0).
+lenght_list([_|T],X):-lenght_list(T,X1),X is X1+1.
