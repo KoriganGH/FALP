@@ -25,6 +25,7 @@ mult_del(N,Y,TM,M):-N mod Y =:= 0,digit_sum(Y,X),digit_sum(N,U),X<U->NewY is Y+1
 lenght_list([],0).
 lenght_list([_|T],X):-lenght_list(T,X1),X is X1+1.
 
+%
 append([],X,X).
 append([H|T],X,[H|T1]):-append(T,X,T1).
 
@@ -34,9 +35,9 @@ read_list(List,A,I,N):-	I1 is I+1,read(X),append(List,[X],List1),read_list(List1
 
 write_list([]):-!.
 write_list([H|T]):-write(H),write(' '),write_list(T).
+%
 
 %15(7)
-
 last([], _, _):-!, fail.
 last([H], H, []):-!.
 last([H|T], R, [H|RL]):-last(T, R, RL).
