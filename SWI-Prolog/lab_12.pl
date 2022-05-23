@@ -24,3 +24,24 @@ mult_del(N,Y,TM,M):-N mod Y =:= 0,digit_sum(Y,X),digit_sum(N,U),X<U->NewY is Y+1
 %14
 lenght_list([],0).
 lenght_list([_|T],X):-lenght_list(T,X1),X is X1+1.
+
+append([],X,X).
+append([H|T],X,[H|T1]):-append(T,X,T1).
+
+read_list(A,N):-read_list([],A,0,N).
+read_list(A,A,N,N):-!.
+read_list(List,A,I,N):-	I1 is I+1,read(X),append(List,[X],List1),read_list(List1,A,I1,N).
+
+write_list([]):-!.
+write_list([H|T]):-write(H),write(' '),write_list(T).
+
+%15(7)
+
+last([], _, _):-!, fail.
+last([H], H, []):-!.
+last([H|T], R, [H|RL]):-last(T, R, RL).
+
+sdvig(L,[E|RL]):-last(L,E,RL),!.
+sdvig_2(L,[E|RL]):-sdvig(L,R),sdvig(R,[E|RL]).
+
+n_15(N):-read_list(List,N),sdvig_2(List,List2),write_list(List2).
