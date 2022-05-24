@@ -48,3 +48,18 @@ n_14:- Hairs=[_,_,_],
 	not(in_list(Hairs,[rizhov,redhead])),
 	not(in_list(Hairs,[chernov,brunette])),
 	write(Hairs),!.
+	
+n_15:- Girls=[_,_,_],
+	in_list(Girls,[anna,Z,Z]),
+	in_list(Girls,[natalya,_,green]),
+	in_list(Girls,[valya,_,_]),
+	in_list(Girls,[_,white,_]),
+	in_list(Girls,[_,green,_]),
+	in_list(Girls,[_,blue,_]),
+	in_list(Girls,[_,_,white]),
+	in_list(Girls,[_,_,green]),
+	in_list(Girls,[_,_,blue]),
+	not(in_list(Girls,[valya,Y,Y])),
+	not(in_list(Girls,[natalya,X,X])),
+	not(in_list(Girls,[valya,white,white])),
+	write(Girls),!.
