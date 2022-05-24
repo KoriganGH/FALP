@@ -79,3 +79,10 @@ n_17(N):-read_list(List,N),min(List,X),max(List,Y),swap(X,Y,List,NewList),write_
 
 %18(19)
 n_18(N):-read_list(List,N),sdvig(List, NewList),write_list(NewList).
+
+%19(31)
+chet(List,X):-chet(List,X,0).
+chet([],X,X):-!.
+chet([H|T],X,TCount):-(H mod 2 =:= 0 -> NewTCount is TCount+1,chet(T,X,NewTCount);chet(T,X,TCount)),!.
+
+n_19(N):-read_list(List,N),chet(List,X),write(X).
