@@ -76,3 +76,6 @@ swap(_,_,[],X,X):-!.
 swap(N,M,[H|T],NewList,X):-(H =:= N -> append(NewList,[M],NewNewList),swap(N,M,T,NewNewList,X);(H =:= M -> append(NewList,[N],NewNewList),swap(N,M,T,NewNewList,X);append(NewList,[H],NewNewList),swap(N,M,T,NewNewList,X))),!.
 
 n_17(N):-read_list(List,N),min(List,X),max(List,Y),swap(X,Y,List,NewList),write_list(NewList).
+
+%18(19)
+n_18(N):-read_list(List,N),sdvig(List, NewList),write_list(NewList).
