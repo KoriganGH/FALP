@@ -1,3 +1,4 @@
+%
 append([],X,X).
 append([H|T],X,[H|T1]):-append(T,X,T1).
 
@@ -7,6 +8,7 @@ read_list(List,N,NewList,I):-NewI is I+1,read(X),append(NewList,[X],NewNewList),
 
 write_list([]):-!.
 write_list([H|T]):-write(H),write(' '),write_list(T).
+%
 
 %11(37)
 index_list(List,Answer):-index_list(List,[],0,Answer).
@@ -27,3 +29,22 @@ dif([],List2,Answer,Answer):-!.
 dif([H|T],List2,Answer,NewList):-srav(H,List2) -> append(NewList,[H],NewNewList),dif(T,List2,Answer,NewNewList);dif(T,List2,Answer,NewList).
 
 n_12(N,M):-read_list(List1,N),read_list(List2,M),dif(List1,List2,Answer),write_list(Answer).
+
+%
+in_list([],_):-fail.
+in_list([El|_],El).
+in_list([_|T],El):-in_list(T,El).
+%
+
+%14
+n_14:- Hairs=[_,_,_],
+	in_list(Hairs,[belokurov,_]),
+	in_list(Hairs,[rizhov,_]),
+	in_list(Hairs,[chernov,_]),
+	in_list(Hairs,[_,blond]),
+	in_list(Hairs,[_,redhead]),
+	in_list(Hairs,[_,brunette]),
+	not(in_list(Hairs,[belokurov,blond])),
+	not(in_list(Hairs,[rizhov,redhead])),
+	not(in_list(Hairs,[chernov,brunette])),
+	write(Hairs),!.
