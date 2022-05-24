@@ -86,3 +86,10 @@ chet([],X,X):-!.
 chet([H|T],X,TCount):-(H mod 2 =:= 0 -> NewTCount is TCount+1,chet(T,X,NewTCount);chet(T,X,TCount)),!.
 
 n_19(N):-read_list(List,N),chet(List,X),write(X).
+
+%20(34)
+segment(List,A,B,NewList):-segment(List,A,B,NewList,[]),!.
+segment([],_,_,NewList,NewList):-!.
+segment([H|T],A,B,NewList,TList):-(A =< H,B >= H -> append(TList,[H],NewTList),segment(T,A,B,NewList,NewTList);segment(T,A,B,NewList,TList)),!.
+
+n_20(N):-read_list(List,N),read(A),read(B),segment(List,A,B,NewList),write_list(NewList).
