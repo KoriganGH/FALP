@@ -17,3 +17,13 @@ lenght_list([],0).
 lenght_list([_|T],X):-lenght_list(T,X1),X is X1+1,!.
 
 n_11(N):-read_list(List,N),index_list(List,IndexList),lenght_list(IndexList,X),write(X),nl,write_list(IndexList).
+
+%12(50)
+srav(N,[]).
+srav(N,[H|T]):-N =:= H -> fail,!;srav(N,T).
+
+dif(List1,List2,Answer):-dif(List1,List2,NewList,[]),dif(List2,List1,Answer,NewList).
+dif([],List2,Answer,Answer):-!.
+dif([H|T],List2,Answer,NewList):-srav(H,List2) -> append(NewList,[H],NewNewList),dif(T,List2,Answer,NewNewList);dif(T,List2,Answer,NewList).
+
+n_12(N,M):-read_list(List1,N),read_list(List2,M),dif(List1,List2,Answer),write_list(Answer).
