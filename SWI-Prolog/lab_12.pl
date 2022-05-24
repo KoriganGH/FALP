@@ -61,3 +61,18 @@ solo(X,[X|_],[1|_]):-!.
 solo(X,[H|T],[HC|TC]):-solo(X,T,TC).
 
 n_16(N):-read_list(List,N),solo(List,X),write(X).
+
+%17(17)
+max([H|T],X):-max(T,X,H),!.
+max([],X,X):-!.
+max([H|T],X,TMax):-H > TMax -> max(T,X,H);max(T,X,TMax).
+
+min([H|T],X):-min(T,X,H),!.
+min([],X,X):-!.
+min([H|T],X,TMin):-H < TMin -> min(T,X,H);min(T,X,TMin).
+
+swap(N,M,List,X):-swap(N,M,List,[],X),!.
+swap(_,_,[],X,X):-!.
+swap(N,M,[H|T],NewList,X):-(H =:= N -> append(NewList,[M],NewNewList),swap(N,M,T,NewNewList,X);(H =:= M -> append(NewList,[N],NewNewList),swap(N,M,T,NewNewList,X);append(NewList,[H],NewNewList),swap(N,M,T,NewNewList,X))),!.
+
+n_17(N):-read_list(List,N),min(List,X),max(List,Y),swap(X,Y,List,NewList),write_list(NewList).
