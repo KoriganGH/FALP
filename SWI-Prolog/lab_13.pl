@@ -147,3 +147,36 @@ n_19:-Friends=[_,_,_],
 	not(in_list(Friends,[samon,_,_,tenis])),
 	in_list(Friends,[_,1,_,kriket]),
 	write('australian ='),write(Who),nl,write('richard ='),write(What),!.
+
+
+%13
+max([X1,X],[Y1,Y],[X1,X]):-X>=Y,!.
+max(_,Y,Y).
+
+max_count([X],X):-!.
+max_count([[H1,H2]|T],R):-max_count(T,R1),max([H1,H2],R1,R).
+
+del_el(_,[],[]).
+del_el(X,[X|T],T):-!.
+del_el(X,[Y|T],[Y|L]):-del_el(X,T,L).
+
+count(N,List,X):-count(N,0,List,X).
+count(_,TN,[],TN):-!.
+count(N,TN,[H|T],X):-N =:= H -> NewTN is TN+1,count(N,NewTN,T,X);count(N,TN,T,X).
+
+presence(_,[]):-!.
+presence(N,[H1|T]):-N =:= H1 -> fail,!;presence(N,T).
+
+list_count(List,Answer):-list_count(List,[],Answer,List).
+list_count([],NewList,NewList,_):-!.
+list_count([H|T],NewList,Answer,List):-presence(H,T) -> count(H,List,X),list_count(T,[[H,X]|NewList],Answer,List);list_count(T,NewList,Answer,List).
+
+build_list_to_count(El,Count,List):-build_list_to_count(El,Count,List,[]).
+build_list_to_count(_,0,List,List):-!.
+build_list_to_count(El,Count,List,TList):-NewCount is Count-1,append(TList,[El],NewTList),build_list_to_count(El,NewCount,List,NewTList).
+
+count_sort(List,Answer):-list_count(List,CountList),count_sort(CountList,[],Answer).
+count_sort([],TList,TList):-!.
+count_sort(List,TList,Answer):-max_count(List,[X,Y]),del_el([X,Y],List,NewList),build_list_to_count(X,Y,NewTList,TList),count_sort(NewList,NewTList,Answer).
+
+n_13(N):-read_list(List,N),count_sort(List,NewList),write_list(NewList).
