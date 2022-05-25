@@ -48,7 +48,8 @@ n_14:- Hairs=[_,_,_],
 	not(in_list(Hairs,[rizhov,redhead])),
 	not(in_list(Hairs,[chernov,brunette])),
 	write(Hairs),!.
-	
+
+%15
 n_15:- Girls=[_,_,_],
 	in_list(Girls,[anna,Z,Z]),
 	in_list(Girls,[natalya,_,green]),
@@ -77,3 +78,33 @@ n_16:-Friends=[_,_,_],
 	in_list(Friends,[tokar,Who3,_,_,_]),
 	write('slesar ='),write(Who1),nl,write('svarman ='),write(Who2),nl,write('tokar ='),write(Who3),!.
 
+%17
+left(_,_,[]):-fail.
+left(A,B,[B,[[B|A]|_]]).
+left(A,B,[_|T]):-left(A,B,T).
+
+right(_,_,[]):-fail.
+right(A,B,[A|[B|_]]).
+right(A,B,[_|T]):-right(A,B,T).
+
+near(A,B,T):-right(A,B,T).
+near(A,B,T):-left(A,B,T).
+
+n_17:-Drinks=[_,_,_,_],
+	in_list(Drinks,[bottle,_]),
+	in_list(Drinks,[glass,_]),
+	in_list(Drinks,[jug,_]),
+	in_list(Drinks,[pot,_]),
+	in_list(Drinks,[_,water]),
+	in_list(Drinks,[_,milk]),
+	in_list(Drinks,[_,lemonade]),
+	in_list(Drinks,[_,kvas]),
+	not(in_list(Drinks,[bottle,milk])),
+	not(in_list(Drinks,[bottle,water])),
+	not(in_list(Drinks,[pot,water])),
+	not(in_list(Drinks,[pot,lemonade])),
+	right([jug,_],[_,lemonade],Drinks),
+	right([_,lemonade],[_,kvas],Drinks),
+	near([glass,_],[pot,_],Drinks),
+	near([glass,_],[_,milk],Drinks),
+	write(Drinks),!.
