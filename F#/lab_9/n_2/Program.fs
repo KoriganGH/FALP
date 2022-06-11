@@ -32,7 +32,7 @@ let checkBox1 = win.FindName("checkBox1") :?> CheckBox
 let checkBox2 = win.FindName("checkBox2") :?> CheckBox
 let button1 = win.FindName("button1") :?> Button
 
-let message eventArgs =
+let message _ =
     let x = (checkBox1.IsChecked.Value,checkBox2.IsChecked.Value)
     match x with
     |(true,false) -> MessageBox.Show("Установлен первый флажок", "Сообщение") |> ignore
