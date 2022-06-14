@@ -134,7 +134,7 @@ type SetDoc(list:PassportRF list) =
     inherit GenDoc()
     member val S = Set.ofList list
     override this.searchDoc(now) =
-        Set.exists(fun k -> k.Equals now) this.S
+        Set.contains now this.S
 
 type BinListDoc(list: PassportRF list)=
     inherit GenDoc()
@@ -151,10 +151,48 @@ type BinListDoc(list: PassportRF list)=
     override this.searchDoc(now) =
         binSearch this.BinList now
 
+let randPassport () = 
+    let r = Random()
+    let fullName = "Александр Первый"
+    let number = r.Next(100000,999999).ToString()
+    let series = r.Next(1000,9999).ToString()
+    let birthdate = "25.12.1984"
+    let gender = "муж"
+    PassportRF(series,number,fullName,gender,birthdate)
+
+let randPasList(len) = 
+   [for i in 0..len -> randPassport() ]
+
 [<EntryPoint>]
 let main argv =
     let test = PassportRF("0312","123456","Александр Первый","муж","25.12.1984")
     let test2 = PassportRF("0312","123456","Александр Второй","муж","25.12.1984")
-    printfn "%O" (test.Equals test2)
-    printfn "%O" (test.ToString())
+//  printfn "%O" (test.Equals test2)
+//  printfn "%O" (test.ToString())
+    let test_l = randPasList (1000000)
+    let arr = ArrayDoc(test_l)
+    let l = ListDoc(test_l)
+    let set = SetDoc(test_l)
+    let bin = BinListDoc(test_l)
+    let time = new Stopwatch()
+
+    time.Restart()
+    arr.searchDoc(test) |> ignore
+    time.Stop()
+    printfn "time array - %O" time.Elapsed
+
+    time.Restart()
+    l.searchDoc(test) |> ignore
+    time.Stop()
+    printfn "time list - %O" time.Elapsed
+
+    time.Restart()
+    bin.searchDoc(test) |> ignore
+    time.Stop()
+    printfn "time binary list - %O" time.Elapsed
+
+    time.Restart()
+    set.searchDoc(test) |> ignore
+    time.Stop()
+    printfn "time set - %O" time.Elapsed
     0 
