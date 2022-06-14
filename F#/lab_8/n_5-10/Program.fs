@@ -113,6 +113,44 @@ type PassportRF(_series,_number,_fullName,_gender,_birthdate) =
                 else this.Series.CompareTo (pas.Series)
             |_->invalidArg "obj" "Cравнение невозможно"
 
+
+[<AbstractClass>]
+type GenDoc() =
+   abstract member searchDoc : PassportRF -> bool
+
+type ArrayDoc(list:PassportRF list) =
+    inherit GenDoc()
+    member val Arr = Array.ofList list
+    override this.searchDoc(now) =
+        Array.exists(fun k -> k.Equals now) this.Arr
+
+type ListDoc(list:PassportRF list) =
+    inherit GenDoc()
+    member val L = list
+    override this.searchDoc(now) =
+        List.exists(fun k -> k.Equals now) this.L
+
+type SetDoc(list:PassportRF list) =
+    inherit GenDoc()
+    member val S = Set.ofList list
+    override this.searchDoc(now) =
+        Set.exists(fun k -> k.Equals now) this.S
+
+type BinListDoc(list: PassportRF list)=
+    inherit GenDoc()
+    let rec binSearch (sortedL: PassportRF list) (curr: PassportRF) =
+        match List.length sortedL with
+        | 0 -> false
+        | len ->
+            let mid = len/2
+            match compare curr sortedL.[mid] with
+            | 0 -> true
+            | 1->binSearch sortedL.[mid+1..] curr
+            | _->binSearch sortedL.[..mid-1] curr
+    member this.BinList = List.sortBy (fun (x:PassportRF) -> (x.Series, x.Number)) list 
+    override this.searchDoc(now) =
+        binSearch this.BinList now
+
 [<EntryPoint>]
 let main argv =
     let test = PassportRF("0312","123456","Александр Первый","муж","25.12.1984")
